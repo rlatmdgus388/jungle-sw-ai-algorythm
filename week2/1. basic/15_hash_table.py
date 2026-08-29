@@ -41,13 +41,18 @@ def manage_grades(students):
         평균, 최고점 학생 이름, 최고점
     """
     # TODO: 평균 점수 계산
-    pass
-    
+    scores = students.values()
+    average = sum(score for score in scores) / len(students)
     
     # TODO: 최고 점수 학생 찾기
-    pass
+    top_score = 0
+    for key, value in students.items():
+        if value > top_score:
+            top_score = value
+            top_student = key
     
     return average, top_student, top_score
+
 
 def find_student_score(students, name):
     """
@@ -61,7 +66,8 @@ def find_student_score(students, name):
         점수 (없으면 None)
     """
     # TODO: students에서 name 찾기
-    pass
+    return students.get(name)
+
 
 # 테스트 케이스
 if __name__ == "__main__":

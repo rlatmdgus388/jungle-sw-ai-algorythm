@@ -42,7 +42,7 @@ def find_above_average_students(students):
     n = len(students)
 
     total = sum(students[i]['score'] for i in range(n))
-    average = round(total / n, 1)
+    average = total / n
 
     above_average_students = [students[i]['name'] for i in range(n) if students[i]['score'] >= average]
     

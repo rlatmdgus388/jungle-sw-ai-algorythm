@@ -60,7 +60,7 @@
 def hanoi_count(n: int) -> int:
     """N 개의 원반을 옮기는 데 필요한 최소 이동 횟수( = 2^N - 1) 를 반환"""
     # TODO: 2^N - 1 을 정수로 반환하세요.
-    pass
+    return pow(2, n) - 1
 
 
 def hanoi_moves(n: int) -> list:
@@ -73,7 +73,31 @@ def hanoi_moves(n: int) -> list:
     """
     # TODO: N > 20 또는 N == 0 인 경우 [] 를 반환하세요.
     # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
-    pass
+    if n == 0 or n > 20:
+        return []
+    
+    moves = []
+
+    # 2. 재귀 헬퍼 함수 정의
+    def solve(count, start, to, via):
+        # Base Case: 원판이 1개일 때는 곧바로 목적지로 이동
+        if count == 1:
+            moves.append((start, to))
+            return
+        
+        # Step 1: 위의 (count - 1)개 묶음을 보조 기둥(via)으로 치우기
+        solve(count - 1, start, via, to)
+        
+        # Step 2: 가장 밑의 큰 원판을 목적지 기둥(to)으로 이동
+        moves.append((start, to))
+        
+        # Step 3: 보조 기둥(via)에 치워뒀던 (count - 1)개 묶음을 목적지 기둥(to)으로 가져오기
+        solve(count - 1, via, to, start)
+
+    # 3. 1번(출발) -> 3번(도착), 2번(보조) 기둥으로 재귀 시작
+    solve(n, 1, 3, 2)
+    
+    return moves
 
 
 if __name__ == "__main__":

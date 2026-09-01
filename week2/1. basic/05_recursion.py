@@ -35,6 +35,11 @@ def factorial(n):
 
     return n * factorial(n-1)
 
+def tail_factorial(n, acc = 1):
+    if n == 1:
+        return acc
+    
+    return tail_factorial(n - 1, n * acc)
 
 
 def fibonacci(n):
@@ -55,6 +60,15 @@ def fibonacci(n):
         return 0
 
     return fibonacci(n-1) + fibonacci(n-2)
+
+def tail_fibonacci(n, a = 0, b = 1):
+    if n == 0:
+        return a
+
+    if n == 1:
+        return b
+
+    return tail_fibonacci(n - 1, b, a + b)
 
 
 # 테스트 케이스

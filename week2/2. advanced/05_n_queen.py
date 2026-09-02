@@ -68,7 +68,44 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
-    pass
+    
+
+    cols = [0] * n
+    count = 0
+
+    def place(row):
+        nonlocal count
+
+        # 모든 행에 퀸을 배치했다면
+        if row == n:
+            count += 1
+            return
+
+        # 현재 행에 0 ~ n-1 열을 하나씩 시도
+        for c in range(n):
+
+            # 이전 행의 퀸들과 충돌하는지 검사
+            valid = True
+
+            for i in range(row):
+                # 같은 열
+                if cols[i] == c:
+                    valid = False
+                    break
+
+                # 대각선
+                if abs(cols[i] - c) == row - i:
+                    valid = False
+                    break
+
+            # 충돌하지 않는다면 배치
+            if valid:
+                cols[row] = c
+                place(row + 1)
+
+    place(0)
+
+    return count
 
 
 if __name__ == "__main__":

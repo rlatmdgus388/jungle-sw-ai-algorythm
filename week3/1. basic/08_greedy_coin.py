@@ -42,12 +42,26 @@ def make_change_greedy(change, coins):
     """
     result = {}
     total_coins = 0
-    
-    # TODO: 각 동전에 대해 반복
-    ## 현재 동전으로 거슬러줄 수 있는 개수 계산    
-    ## 개수가 0보다 크면 결과에 추가
-    pass
-    
+
+    # coins = [500, 100, 50, 10]
+    # 내림차순으로 정렬
+    coins.sort(reverse=True)
+
+    idx = 0
+    while change != 0:
+        # 몫이 0인 경우
+        if change % coins[idx] == change:
+            # 다른 동전 선택
+            idx += 1
+        # 몫이 1이상인 경우
+        elif change % coins[idx] < change:
+            # 나눠줌
+
+            quotient = change // coins[idx]
+            result[coins[idx]] = quotient
+            total_coins += quotient
+            change %= coins[idx]
+
     return total_coins, result
 
 # 테스트 케이스

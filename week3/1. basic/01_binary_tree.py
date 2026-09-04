@@ -42,50 +42,54 @@ class TreeNode:
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
     result = []
-
-    def traversal(root):
-        # 나 먼저 방문하고, 왼쪽을 끝내고, 오른쪽을 끝낸다
-        if root is None:
-            return
-
-        result.append(root.value)   # V
-        traversal(root.left)   # L
-        traversal(root.right)   # R
-
-    traversal(root)
-
+    
+    # TODO: root가 None이면 빈 리스트 반환
+    pass
+    
+    # TODO: 루트 값 추가
+    pass
+    
+    # TODO: 왼쪽 서브트리 순회
+    pass
+    
+    # TODO: 오른쪽 서브트리 순회
+    pass
+    
     return result
 
 def inorder(root):
     """중위 순회: 왼쪽 → 루트 → 오른쪽"""
     result = []
     
-    def traversal(root):
-        if root is None:
-            return
-
-        # 왼쪽 원소를 찾아가는 재귀가 종료되면 부모 노드로 올라감
-        traversal(root.left)    # L
-        result.append(root.value)       # V
-        traversal(root.right)   # R
-
-    traversal(root)
-
+    # TODO: root가 None이면 빈 리스트 반환
+    pass
+    
+    # TODO: 왼쪽 서브트리 순회
+    pass
+    
+    # TODO: 루트 값 추가
+    pass
+    
+    # TODO: 오른쪽 서브트리 순회
+    pass
+    
     return result
 
 def postorder(root):
     """후위 순회: 왼쪽 → 오른쪽 → 루트"""
     result = []
-
-    def traversal(root):
-        if root is None:
-            return
-
-        traversal(root.left)    # L
-        traversal(root.right)   # R
-        result.append(root.value)       # V
-
-    traversal(root)
+    
+    # TODO: root가 None이면 빈 리스트 반환
+    pass
+    
+    # TODO: 왼쪽 서브트리 순회
+    pass
+    
+    # TODO: 오른쪽 서브트리 순회
+    pass
+    
+    # TODO: 루트 값 추가
+    pass
     
     return result
 

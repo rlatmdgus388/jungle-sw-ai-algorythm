@@ -44,36 +44,17 @@ def bfs(graph, start):
         방문 순서 리스트
     """
     visited = []
-
-    # 큐 생성
-    queue = deque()
-
-    # 1. 시작 노드를 큐에 삽입하고 방문 처리
-    queue.append(start)
-    visited.append(start)
     
-    # 방문 기준: 번호가 낮은 인접 노드부터
-    def bfs_helper(graph, queue):
-        # basse case:
-        # 큐가 전부 비었을때
-        if not queue:
-            return
-        
-        # 2. 큐에서 뺀 다음 
-        node = queue.popleft()
-        # 방문하지 않은 인접 노드를 큐에 삽입
-        for v in graph[node]:
-            # 인접 노드 중 이미 방문한 노드는 continue
-            if v in visited:
-                continue
-            
-            queue.append(v)
-            # 방문 처리
-            visited.append(v)
+    # TODO: 큐 생성 및 시작 정점 추가
+    ## 방문한 정점 집합
+    pass
 
-        bfs_helper(graph, queue)
-
-    bfs_helper(graph, queue)
+    # TODO: 큐가 빌 때까지 반복
+    ## 큐에서 정점 꺼내기
+    ## 인접한 정점들 확인
+    ## 방문하지 않은 정점이면 큐에 추가
+    pass
+    
     return visited
 
 # 테스트 케이스

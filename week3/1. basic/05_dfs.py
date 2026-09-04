@@ -42,18 +42,15 @@ def dfs(graph, start, visited=None):
     Returns:
         방문 순서 리스트
     """
-    if visited is None:
-        visited = []
-
-    # 스택대신 재귀 사용 -> 함수 자체를 스택에 쌓는다 생각.
+    # TODO: visited가 None이면 초기화
+    pass
     
+    # TODO: 현재 정점 방문
+    pass
     
-    # 1. 시작 방문 처리
-    visited.append(start)
-    # 2. 방문하지 않은 인접 노드 확인
-    for v in graph[start]:
-        if v not in visited:
-            dfs(graph, v, visited)
+    # TODO: 인접한 정점들에 대해 재귀
+    ## 방문하지 않은 정점이면 재귀 호출
+    pass
     
     return visited
 

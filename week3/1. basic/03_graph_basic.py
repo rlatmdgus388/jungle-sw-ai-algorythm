@@ -40,28 +40,15 @@ def create_graph(vertices, edges, directed=False):
     Returns:
         그래프 딕셔너리
     """
+    # TODO: 빈 그래프 초기화
+    pass
     
-    graph = {}
-
-    for i in range(vertices):
-        graph[i] = []
-
-    #  방향 그래프
-    if directed:
-        # u:출발노드, v: 도착노드
-        for u, v in edges:
-            graph[u].append(v)
-        return graph
-    # 무방향 그래프
-    else:
-        # 양방향을 어떻게 표한해야될까
-        # edges안의 튜플의 방향을 거꾸로한 튜플을 추가하면됨
-        for u, v in edges:
-            graph[u].append(v)
-                # 지금 문제가 edge[1]을 키값으로 넣으려하는데 
-            graph[v].append(u)
-        return graph
-
+    # TODO: 간선 추가
+    ## 간선 추가 (u에서 v로)
+    ## 무방향 그래프면 반대 방향도 추가
+    pass
+    
+    return graph
 
 # 테스트 케이스
 if __name__ == "__main__":

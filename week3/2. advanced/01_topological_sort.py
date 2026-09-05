@@ -39,22 +39,32 @@ def topological_sort(vertices, edges):
     Returns:
         위상 정렬 순서
     """
-    # TODO: 그래프와 진입 차수 초기화
-    pass
-    
-    # TODO: 그래프 구성 및 진입 차수 계산
-    pass
-    
-    # TODO: 진입 차수가 0인 정점들을 큐에 추가
-    pass
-    
+    # 1. 0번 노드 큐에 삽입
+    queue = deque()
+
+    # 인덱스: 노드 번호, 원소 값: 진입차수 개수
+    table = [0 for _ in range(vertices)]
     result = []
-    
-    # TODO: 큐가 빌 때까지 반복
-    ## 큐에서 정점 꺼내기
-    ## 인접한 정점들의 진입 차수 감소
-    pass
-    
+    # 테이블 채우기
+    for edge in edges:
+        table[edge[1]] += 1
+
+    # 첫 노드 큐에 삽입
+    # 0 삽입
+    queue.append(edges[0][0])
+
+    # 테이블이나 edges를 순회하면 원하는대로 조작 불가능
+    # 그냥 정렬이 종료되는 조건을 걸어두고 while문을 돌리자.
+    while queue:
+        node = queue.popleft()
+        result.append(node)
+
+        for u, v in edges:
+            if u == node:
+                table[v] -= 1
+                if table[v] == 0:
+                    queue.append(v)
+
     return result
 
 # 테스트 케이스

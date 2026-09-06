@@ -49,17 +49,6 @@ dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
 - 0 <= n <= 1000, 간선 수 <= 5000 정도면 충분.
 - 0 <= w <= 10000
 
-▣ 힌트 (heapq 사용, O((V+E) log V))
-  import heapq
-  - dist 를 INF 로 초기화하고 dist[start] = 0
-  - 우선순위 큐에 (0, start) 를 push
-  - 큐가 빌 때까지:
-      (d, u) = heappop
-      if d > dist[u]: continue     # 이미 더 짧은 경로로 처리됨
-      for v, w in graph[u]:
-          if dist[u] + w < dist[v]:
-              dist[v] = dist[u] + w
-              heappush(pq, (dist[v], v))
 """
 
 import heapq
@@ -75,13 +64,35 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     start: 출발 정점
     반환: 길이 n 의 거리 리스트 (도달 불가 = float('inf'))
     """
-    # TODO: 인접 리스트 graph 구성 (graph[u] = [(v, w), ...])
-    # TODO: dist 를 INF 로 초기화하고 dist[start] = 0
-    # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색
-    # TODO: dist 반환
-    pass
 
+    # 노드 번호와 해당 번호의 거리를 갱신할 테이블
+    distance = [INF for _ in range(n)]
+    # 방문 갱신 테이블
+    near_nodes = []
 
+    if n == 1:
+        distance[0] == 0
+
+    # 출발 노드를 큐에 넣는다.
+    now = start
+    distance[start] = 0
+    heapq.heappush(near_nodes, (0, start))
+
+    # 더 이상 방문할 노드가 없을 때까지
+    while near_nodes:
+        # 현재 노드를 큐에서 제거
+        now = heapq.heappop(near_nodes)[1]
+        # 현재 노드와 인접한 노드 큐에 추가 (가중치, 노드)
+        for edge in edges:
+            if edge[0] == now:
+                heapq.heappush(near_nodes, (edge[2], edge[1]))
+                # 거리 갱신
+                if distance[edge[1]] > distance[now] + edge[2]:
+                    distance[edge[1]] = distance[now] + edge[2]
+
+    return distance
+
+    
 def _format(dist):
     """출력 표기를 위한 헬퍼: float('inf') 는 'INF' 로 보여줌"""
     return [('INF' if x == INF else x) for x in dist]

@@ -84,20 +84,20 @@ def fibonacci_memo(n, memo=None):
     if memo is None:
         memo = {}
 
-    # f(n) = f(n-1) + f(n-2), f(0) = 1, f(1) =1
     if n == 0:
         return 1
-
     if n == 1:
         return 1
 
-    # 결과를 바로 return하지말고  메모장에 먼저 저장해놓는다.
-    # 그 후 그 저장한 값을 return한다.
-    memo[n] = fibonacci_memo(n-1) + fibonacci_memo(n-2)
+    # 이미 계산한 적이 있다면 저장된 값 사용
+    if n in memo:
+        return memo[n]
+
+    # 처음 계산하는 경우
+    memo[n] = fibonacci_memo(n - 1, memo) + fibonacci_memo(n - 2, memo)
+
     return memo[n]
 
-    
-    return memo[n]
 
 # 테스트 케이스
 if __name__ == "__main__":
